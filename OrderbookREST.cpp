@@ -1,18 +1,8 @@
-// Complete Alpaca REST API + Orderbook Integration
-// This connects your multiTypeOrderbook.cpp to Alpaca's REST API
-//
 // Compile: g++ -std=c++17 OrderbookREST.cpp -o OrderbookREST -lcurl
 //
-// NOTE: No OpenSSL required! Alpaca uses simple API key authentication.
 //
 // ./OrderbookREST
-//
-// Features:
-// - Fetch live quotes and market data from Alpaca
-// - Update your local orderbook
-// - Place/cancel orders (paper trading or live)
-// - Simple trading strategy example
-// - Works with US stocks (AAPL, TSLA, SPY, etc.)
+
 
 #include <iostream>
 #include <string>
@@ -41,7 +31,7 @@ enum class OrderType {
     FillandKill      // Maps to Alpaca's "ioc" (Immediate or Cancel)
 };
 
-// Simplified Order class (use your full one from multiTypeOrderbook.cpp)
+// Simplified Order class
 class Order {
 public:
     Order(OrderType orderType, OrderId orderId, Side side, Price price, Quantity quantity)
@@ -80,7 +70,6 @@ private:
 using OrderPointer = std::shared_ptr<Order>;
 
 // ==================== Simple JSON Parser ====================
-// For production, use nlohmann/json
 
 class SimpleJsonParser {
 public:
@@ -579,12 +568,9 @@ int main() {
     std::cout << "║  Trading System (Paper Trading)        ║" << std::endl;
     std::cout << "╚════════════════════════════════════════╝\n" << std::endl;
     
-    // Initialize API with your keys
-    // Get keys from: https://alpaca.markets/ (instant paper trading account)
     std::string apiKey = "API KEY";     /////// Your Alpaca API Key //////
     std::string apiSecret = "SECRET KEY";  /////// Your Alpaca Secret Key//////
     
-    // Check for keys from environment variables (recommended)
     const char* envKey = std::getenv("ALPACA_API_KEY");
     const char* envSecret = std::getenv("ALPACA_SECRET_KEY");
     
