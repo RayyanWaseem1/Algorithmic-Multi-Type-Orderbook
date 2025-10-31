@@ -1,9 +1,5 @@
 // Compile: g++ -std=c++17 OrderbookREST.cpp -o OrderbookREST -lcurl
-//
-//
 // ./OrderbookREST
-
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -69,7 +65,7 @@ private:
 
 using OrderPointer = std::shared_ptr<Order>;
 
-// ==================== Simple JSON Parser ====================
+// JSON PARCER
 
 class SimpleJsonParser {
 public:
@@ -143,7 +139,7 @@ public:
     }
 };
 
-// ==================== Alpaca REST API Client ====================
+// ALPACA REST API CLIENT
 
 class AlpacaRestAPI {
 private:
@@ -231,7 +227,7 @@ public:
         curl_global_cleanup();
     }
     
-    // ==================== Account Information ====================
+    // ACCOUNT INFORMATION
     
     // Get account information
     std::string GetAccount() {
@@ -253,7 +249,7 @@ public:
         return SimpleJsonParser::extractDouble(response, "equity");
     }
     
-    // ==================== Market Data ====================
+    // MARKET DATA
     
     // Get latest quote for a symbol
     std::string GetLatestQuote(const std::string& symbol) {
@@ -276,7 +272,7 @@ public:
         return MakeRequest("/v2/stocks/" + symbol + "/bars", params, "GET", "", true);
     }
     
-    // ==================== Orders ====================
+    // ORDERS
     
     // Get all orders
     std::string GetOrders(const std::string& status = "open") {
@@ -355,7 +351,7 @@ public:
         return MakeRequest("/v2/orders", "", "DELETE");
     }
     
-    // ==================== Positions ====================
+    // POSITIONS
     
     // Get all positions
     std::string GetPositions() {
@@ -375,7 +371,7 @@ public:
         return MakeRequest("/v2/positions/" + symbol);
     }
     
-    // ==================== Utility ====================
+    // UTILITY
     
     // Test connection
     bool TestConnection() {
@@ -395,7 +391,7 @@ public:
     }
 };
 
-// ==================== Orderbook Manager ====================
+// ORDERBOOK MANAGER
 
 class OrderbookManager {
 private:
@@ -515,7 +511,7 @@ public:
     }
 };
 
-// ==================== Simple Trading Strategy ====================
+// SIMPLE TRADING STRATEGY
 
 class SimpleSpreadStrategy {
 private:
@@ -560,7 +556,7 @@ public:
     }
 };
 
-// ==================== Main Program ====================
+// MAIN
 
 int main() {
     std::cout << "╔════════════════════════════════════════╗" << std::endl;
